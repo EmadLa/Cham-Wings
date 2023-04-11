@@ -8,8 +8,7 @@ import {
     Input,
     Button,
     InputGroup,
-    InputRightElement,
-    Icon, Text, HStack, Divider
+    InputRightElement, Text, HStack, Divider
 } from '@chakra-ui/react';
 import {z} from 'zod';
 import {ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
@@ -39,7 +38,7 @@ const Login = ({onSubmit}: FormProps) => {
     const [showPassword, setShowPassword] = useState(false);
     const handlePasswordVisibility = () => setShowPassword(!showPassword);
     return (
-        <Flex width="full" align="center" justifyContent="center" mt={20}>
+        <Flex width="full" align="center" justifyContent="center" mt={15}>
             <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
                 <Box textAlign="center">
                     <Heading size={{ base: 'xs', md: 'lg' }}>Log in to your account</Heading>
