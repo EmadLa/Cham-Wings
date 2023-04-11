@@ -9,12 +9,13 @@ import {
     Button,
     InputGroup,
     InputRightElement,
-    Icon, Text
+    Icon, Text, HStack, Divider
 } from '@chakra-ui/react';
 import {z} from 'zod';
 import {ViewIcon, ViewOffIcon} from "@chakra-ui/icons";
-import {FieldValues, useForm} from "react-hook-form";
+import { useForm} from "react-hook-form";
 import {zodResolver} from '@hookform/resolvers/zod';
+import {OAuthButtonGroup} from "./OAuthButtonGroup";
 
 const schema = z.object({
     email: z.string().email().min(5, {message: "Email must be at least 5 characters."}),
@@ -41,7 +42,13 @@ const Login = ({onSubmit}: FormProps) => {
         <Flex width="full" align="center" justifyContent="center" mt={20}>
             <Box p={8} maxWidth="500px" borderWidth={1} borderRadius={8} boxShadow="lg">
                 <Box textAlign="center">
-                    <Heading>Login</Heading>
+                    <Heading size={{ base: 'xs', md: 'lg' }}>Log in to your account</Heading>
+                    <HStack spacing="1" justify="center">
+                        <Text color="muted">Don't have an account?</Text>
+                        <Button variant="link" colorScheme="blue">
+                            Sign up
+                        </Button>
+                    </HStack>
                 </Box>
                 <Box my={4} textAlign="left" width={350}>
                     <form onSubmit={handleSubmit(data => {
@@ -62,6 +69,7 @@ const Login = ({onSubmit}: FormProps) => {
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="*******"
                                     size="lg"
+                                    {...register('password')}
                                     // onChange={event => setPassword(event.currentTarget.value)}
                                 />
                                 <InputRightElement width="3rem">
@@ -71,15 +79,21 @@ const Login = ({onSubmit}: FormProps) => {
                                 </InputRightElement>
                             </InputGroup>
                         </FormControl>
-                        <Button disabled={!isValid} width="full" mt={4} type="submit" variant="outline">
+                        <Button width="full" mt={4} type="submit" variant="outline">
                             Sign In
                         </Button>
                     </form>
-                    <Text align="center" mt={5}>Create new account? <a href="#">sign up</a></Text>
+                    <HStack mt={5}>
+                        <Divider />
+                        <Text fontSize="sm" whiteSpace="nowrap" color="muted">
+                            or continue with
+                        </Text>
+                        <Divider />
+                    </HStack>
+                    <OAuthButtonGroup />
                 </Box>
             </Box>
         </Flex>
     );
 };
-
 export default Login;
