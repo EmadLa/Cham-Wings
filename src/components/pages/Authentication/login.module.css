@@ -1,0 +1,8 @@
+.image{
+    display: flex;
+    margin-left: 70%;
+    margin-bottom: 20px;
+    margin-top: 70px;
+    justify-content: center;
+    align-items: center;
+}
